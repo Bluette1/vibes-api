@@ -1,0 +1,29 @@
+POST http://localhost:3000/users/tokens/sign_up
+Content-Type: application/json
+
+{
+    "email": "mary.sawyer@gmail.com",
+    "password": "password123&"
+
+}
+
+###
+POST http://localhost:3000/users/tokens/sign_in
+Content-Type: application/json
+
+{
+    "email": "mary.sawyer@gmail.com",
+    "password": "password123&"
+
+}
+
+###
+POST http://localhost:3000/images
+Content-Type: application/json
+Authorization: Bearer QL4sqV4Q7-yZcAKvmaxVCYqsBaHwpw81Jks2sk5mKjPiijxG5jJsuki7JBtU
+
+{
+    "image": "image"
+    
+
+}
