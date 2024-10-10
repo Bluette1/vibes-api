@@ -1,3 +1,4 @@
+# Controller for managing images
 class ImagesController < ApplicationController
   before_action :authenticate_devise_api_token!, only: [:create]
 
