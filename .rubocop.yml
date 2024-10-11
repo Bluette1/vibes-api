@@ -2,6 +2,8 @@ Style/FrozenStringLiteralComment:
   Enabled: false
 Style/Documentation:
   Enabled: false
+Lint/EmptyFile:
+  Enabled: false
 AllCops:
   Exclude:
     - 'bin/**'

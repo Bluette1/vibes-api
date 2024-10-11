@@ -10,5 +10,7 @@ Rails.application.routes.draw do
   # root "posts#index"
   root 'images#index'
 
-  resources :images
+  namespace :api do
+    resources :images, only: [:index]
+  end
 end
