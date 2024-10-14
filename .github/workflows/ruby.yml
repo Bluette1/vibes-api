@@ -4,10 +4,12 @@ on:
   push:
     branches:
       - main
+      - develop
       - feature/add-meditation-app
   pull_request:
     branches:
       - main
+      - develop
       - feature/add-meditation-app
 
 jobs:
