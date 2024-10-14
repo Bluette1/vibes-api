@@ -1,5 +1,5 @@
 module Api
-  class MeditationController < ApplicationController
+  class AudiosController < ApplicationController
     def index
       # Fetch background music or guided sessions based on audio type
       audios = Audio.by_audio_type(params[:audio_type])
