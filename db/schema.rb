@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_23_174515) do
+ActiveRecord::Schema[7.1].define(version: 2024_10_11_050521) do
+  create_table "audios", force: :cascade do |t|
+    t.string "title"
+    t.string "url"
+    t.text "description"
+    t.integer "duration"
+    t.string "audio_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "devise_api_tokens", force: :cascade do |t|
     t.string "resource_owner_type", null: false
     t.bigint "resource_owner_id", null: false
@@ -25,6 +35,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_23_174515) do
     t.index ["previous_refresh_token"], name: "index_devise_api_tokens_on_previous_refresh_token"
     t.index ["refresh_token"], name: "index_devise_api_tokens_on_refresh_token"
     t.index ["resource_owner_type", "resource_owner_id"], name: "index_devise_api_tokens_on_resource_owner"
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.string "title"
+    t.string "src"
+    t.string "description"
+    t.string "category"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
