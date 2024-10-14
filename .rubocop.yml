@@ -14,3 +14,5 @@ AllCops:
     - 'tmp/**'
     - 'vendor/**'
     - 'log/**'
+    - '*.json'
+    - 'yarn.lock'
