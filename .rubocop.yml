@@ -4,6 +4,10 @@ Style/Documentation:
   Enabled: false
 Lint/EmptyFile:
   Enabled: false
+Metrics/MethodLength:
+  Enabled: false
+Metrics/AbcSize:
+  Enabled: false
 AllCops:
   Exclude:
     - 'bin/**'

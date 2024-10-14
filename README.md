@@ -12,11 +12,10 @@ Vibes API is a Ruby on Rails application designed to provide robust and secure d
 
 ### Prerequisites
 
-- Ruby 3.0 (or your specified version)
+- Ruby 3.1 
 - Rails 7
 - Bundler
-- PostgreSQL (or your preferred database)
-
+- PostgreSQL 
 ### Installation
 
 1. **Clone the repository**:
