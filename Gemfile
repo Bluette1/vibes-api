@@ -52,3 +52,7 @@ gem 'devise-api', '~> 0.1.3'
 gem 'rack-cors', require: 'rack/cors'
 
 gem 'rubocop-discourse'
+
+gem 'unsplash'
+
+gem 'dotenv-rails'

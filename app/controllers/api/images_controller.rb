@@ -6,11 +6,11 @@ module Api
     require 'net/http'
 
     def index
-      # Fetch images from Getty API
-      getty_images = fetch_images_from_getty
+      # Fetch images from Unsplash API
+      unsplash_images = fetch_images_from_unsplash
 
-      if getty_images.present?
-        render json: getty_images
+      if unsplash_images.present?
+        render json: unsplash_images
       else
         # Fallback to default images from the database
         Rails.logger.debug 'Rendering Fallback'
@@ -31,27 +31,25 @@ module Api
 
     private
 
-    def fetch_images_from_getty
-      # Example API call (replace with actual API logic)
-      url = URI('https://api.gettyimages.com/v3/search/images?phrase=nature')
+    def fetch_images_from_unsplash
+      url = URI("https://api.unsplash.com/search/photos?query=nature&client_id=#{ENV['UNSPLASH_ACCESS_KEY']}")
       http = Net::HTTP.new(url.host, url.port)
       http.use_ssl = true
       request = Net::HTTP::Get.new(url)
-      request['Api-Key'] = ENV['GETTY_API_KEY'] # Ensure you have your API key
 
       response = http.request(request)
       json_data = JSON.parse(response.body)
 
       # Assuming the API returns an array of image data
-      json_data['images'].map do |image_data|
+      json_data['results'].map do |image_data|
         {
-          title: image_data['title'],
-          url: image_data['display_sizes'][0]['uri'],
-          description: image_data['caption']
+          title: image_data['description'] || 'Untitled',
+          url: image_data['urls']['small'], # You can choose other sizes like 'regular' or 'full'
+          description: image_data['alt_description']
         }
       end
     rescue StandardError => e
-      Rails.logger.error "Getty API Error: #{e.message}"
+      Rails.logger.error "Unsplash API Error: #{e.message}"
       nil
     end
   end
