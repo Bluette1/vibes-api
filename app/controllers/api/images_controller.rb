@@ -44,7 +44,7 @@ module Api
       json_data['results'].map do |image_data|
         {
           title: image_data['description'] || 'Untitled',
-          url: image_data['urls']['small'], # You can choose other sizes like 'regular' or 'full'
+          src: image_data['urls']['small'], # You can choose other sizes like 'regular' or 'full'
           description: image_data['alt_description']
         }
       end
