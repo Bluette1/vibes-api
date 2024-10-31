@@ -5,31 +5,50 @@ on:
     branches:
       - main
       - develop
-      - feature/add-meditation-app
+      - feature/background-music-for-meditation-3
   pull_request:
     branches:
       - main
       - develop
-      - feature/add-meditation-app
+      - feature/background-music-for-meditation-3
+env:
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: postgres
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_USER: ${{ env.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: '3.1'
-    - name: Install dependencies
-      run: bundle install
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.1"
+      - name: Install dependencies
+        run: bundle install
 
-    - name: Run RuboCop
-      run: bundle exec rubocop -d
+      - name: Create the database
+        run: bin/rails db:create
 
-    - name: Run tests
-      run: bundle exec rake test
+      - name: Run RuboCop
+        run: bundle exec rubocop -d
+
+      - name: Run tests
+        run: bundle exec rake test

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  root 'images#index'
+  # root 'images#index'
 
   namespace :api do
     resources :images, only: [:index]
