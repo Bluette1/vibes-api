@@ -1,4 +1,4 @@
 {
   "*.rb": ["bundle exec rubocop -A", "bundle exec rake test"],
-  "*Gemfile": ["bundle exec rubocop -A"]
+  "Gemfile": ["bundle exec rubocop -A"]
 }
