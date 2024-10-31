@@ -11,6 +11,9 @@ on:
       - main
       - develop
       - feature/add-meditation-app
+env:
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: postgres
 
 jobs:
   build:
