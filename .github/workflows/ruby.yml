@@ -14,7 +14,6 @@ on:
 env:
   POSTGRES_USER: postgres
   POSTGRES_PASSWORD: postgres
-  POSTGRES_DB: vibes_api
 
 jobs:
   build:
@@ -26,7 +25,6 @@ jobs:
         env:
           POSTGRES_USER: ${{ env.POSTGRES_USER }}
           POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
-          POSTGRES_DB: ${{ env.POSTGRES_DB }}
         ports:
           - 5432:5432
         options: >-
@@ -45,6 +43,9 @@ jobs:
           ruby-version: "3.1"
       - name: Install dependencies
         run: bundle install
+
+      - name: Create the database
+        run: bin/rails db:create
 
       - name: Run RuboCop
         run: bundle exec rubocop -d
