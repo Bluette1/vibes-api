@@ -12,5 +12,6 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :images, only: [:index]
+    resources :audios, only: [:index]
   end
 end
