@@ -24,6 +24,16 @@ Authorization: Bearer QL4sqV4Q7-yZcAKvmaxVCYqsBaHwpw81Jks2sk5mKjPiijxG5jJsuki7JB
 
 {
     "image": "image"
-    
-
 }
+
+###
+
+GET http://localhost:3000/api/images
+Content-Type: application/json
+
+
+###
+
+GET http://localhost:3000/api/audios
+Content-Type: application/json
+
