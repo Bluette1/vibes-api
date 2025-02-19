@@ -1,6 +1,10 @@
 # db/seeds.rb
 # rubocop:disable Layout/LineLength
 
+# Delete existing records
+Image.delete_all
+Audio.delete_all
+
 Image.create([
                {
                  "src": "https://i0.wp.com/picjumbo.com/wp-content/uploads/beautiful-green-field-scenery-free-image.jpg?w=600\u0026quality=80", "description": 'Beautiful Green Field Scenery Free Photo'
@@ -8,14 +12,14 @@ Image.create([
              ])
 
 Audio.create([
-               { title: 'Ocean Waves', url: 'https://vibes-cloud.s3.us-east-1.amazonaws.com/mindfulness.mp3', duration: 384, audio_type: 'nature' },
-               { title: 'Morning Meditation', url: 'https://vibes-cloud.s3.us-east-1.amazonaws.com/Thine_Is_the_Glory.mp3', duration: 43, audio_type: 'guided session' },
-               { title: 'O Come O Come ', url: 'https://vibes-cloud.s3.us-east-1.amazonaws.com/O-come-O-come.mp3', duration: 66, audio_type: 'guided session' },
-               { title: 'Joyful Joyful', url: 'https://vibes-cloud.s3.us-east-1.amazonaws.com/joyful-joyful.mp3', duration: 177, audio_type: 'guided session' },
-               { title: 'Rainforest Ambience', url: 'https://vibes-cloud.s3.us-east-1.amazonaws.com/loving-kindness.mp3', duration: 384, audio_type: 'nature' },
-               { title: 'Meditation', url: 'https://vibes-cloud.s3.us-east-1.amazonaws.com/meditation.mp3', duration: 360, audio_type: 'meditation' },
-               { title: 'Deep Focus', url: 'https://vibes-cloud.s3.us-east-1.amazonaws.com/deep-focus.mp3', duration: 306, audio_type: 'ambient' },
-               { title: 'Focus', url: 'https://vibes-cloud.s3.us-east-1.amazonaws.com/focused.mp3', duration: 384, audio_type: 'ambient' }
+               { title: 'Ocean Waves', url: 'https://vvibes-cloud.s3.us-east-1.amazonaws.com/audios/mindfulness.mp3', duration: 384, audio_type: 'nature' },
+               { title: 'Morning Meditation', url: 'https://vvibes-cloud.s3.us-east-1.amazonaws.com/audios/Thine_Is_the_Glory.mp3', duration: 43, audio_type: 'guided session' },
+               { title: 'O Come O Come ', url: 'https://vvibes-cloud.s3.us-east-1.amazonaws.com/audios/O-come-O-come.mp3', duration: 66, audio_type: 'guided session' },
+               { title: 'Joyful Joyful', url: 'https://vvibes-cloud.s3.us-east-1.amazonaws.com/audios/joyful-joyful.mp3', duration: 177, audio_type: 'guided session' },
+               { title: 'Rainforest Ambience', url: 'https://vvibes-cloud.s3.us-east-1.amazonaws.com/audios/think.mp3', duration: 384, audio_type: 'nature' },
+               { title: 'Meditation', url: 'https://vvibes-cloud.s3.us-east-1.amazonaws.com/audios/meditation.mp3', duration: 360, audio_type: 'meditation' },
+               { title: 'Deep Focus', url: 'https://vvibes-cloud.s3.us-east-1.amazonaws.com/audios/deep-focus.mp3', duration: 306, audio_type: 'ambient' },
+               { title: 'Focus', url: 'https://vvibes-cloud.s3.us-east-1.amazonaws.com/audios/focused.mp3', duration: 384, audio_type: 'ambient' }
              ])
 
 # rubocop:enable Layout/LineLength
