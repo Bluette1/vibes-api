@@ -55,3 +55,6 @@ gem 'rubocop-discourse'
 gem 'unsplash'
 
 gem 'dotenv-rails'
+
+gem 'sidekiq'
+gem 'sidekiq-scheduler'
