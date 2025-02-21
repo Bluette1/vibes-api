@@ -1,21 +1,28 @@
 # Controller for managing images
+require 'net/http'
+
 module Api
   class ImagesController < ApplicationController
     before_action :authenticate_devise_api_token!, only: [:create]
 
-    require 'net/http'
-
     def index
-      # Fetch images from Unsplash API
-      unsplash_images = fetch_images_from_unsplash
+      cache_key = 'images_index'
+      cached_response = $redis.get(cache_key)
 
-      if unsplash_images.present?
-        render json: unsplash_images
+      if cached_response
+        render json: JSON.parse(cached_response)
       else
-        # Fallback to default images from the database
-        Rails.logger.debug 'Rendering Fallback'
-        default_images = Image.all
-        render json: default_images
+        # Fetch images from Unsplash API
+        unsplash_images = fetch_images_from_unsplash
+        if unsplash_images.present?
+          images = unsplash_images
+        else
+          # Fallback to default images from the database
+          Rails.logger.debug 'Rendering Fallback'
+          images = Image.all
+        end
+        $redis.set(cache_key, images.to_json, ex: 1.hour.to_i)
+        render json: images
       end
     end
 
