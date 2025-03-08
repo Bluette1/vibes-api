@@ -37,3 +37,23 @@ Content-Type: application/json
 GET http://localhost:3000/api/audios
 Content-Type: application/json
 
+
+###
+POST http://localhost:3000/api/user_preferences
+Content-Type: application/json
+Authorization: Bearer GP2rJt9yCS3oq1xEfezKKPVyLxZVWGZ4PFBLHXt5dBpqWS1RGi_eKPfF3nL-
+
+{
+    "preferences": {
+        "volume": 0.9,
+        "selected_track": "10",
+        "image_transition_interval": 20000
+    }
+
+}
+
+
+###
+GET http://localhost:3000/api/user_preferences
+Content-Type: application/json
+Authorization: Bearer GP2rJt9yCS3oq1xEfezKKPVyLxZVWGZ4PFBLHXt5dBpqWS1RGi_eKPfF3nL-

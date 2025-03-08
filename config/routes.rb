@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   namespace :api do
     resources :images, only: [:index]
     resources :audios, only: [:index]
+    resources :user_preferences, only: %i[index create]
   end
 end
