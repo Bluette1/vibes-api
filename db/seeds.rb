@@ -19,7 +19,9 @@ Audio.create([
                { title: 'Rainforest Ambience', url: 'https://vvibes-cloud.s3.us-east-1.amazonaws.com/audios/think.mp3', duration: 384, audio_type: 'nature' },
                { title: 'Feel Good', url: 'https://vvibes-cloud.s3.us-east-1.amazonaws.com/audios/meditation.mp3', duration: 360, audio_type: 'ambient' },
                { title: 'Deep Focus', url: 'https://vvibes-cloud.s3.us-east-1.amazonaws.com/audios/deep-focus.mp3', duration: 306, audio_type: 'ambient' },
-               { title: 'Focus', url: 'https://vvibes-cloud.s3.us-east-1.amazonaws.com/audios/focused.mp3', duration: 384, audio_type: 'ambient' }
+               { title: 'Focus', url: 'https://vvibes-cloud.s3.us-east-1.amazonaws.com/audios/focused.mp3', duration: 384, audio_type: 'ambient' },
+               { title: 'Symphony No. 40 - Allegro', url: 'https://vvibes-cloud.s3.us-east-1.amazonaws.com/audios/Symphony+No.+40+-+Allegro.mp3', duration: 360, audio_type: 'background music' },
+               { title: 'Overture to Figaro', url: 'https://vvibes-cloud.s3.us-east-1.amazonaws.com/audios/Overture-to-Figaro.mp3', duration: 240, audio_type: 'background music' }
              ])
 
 # rubocop:enable Layout/LineLength
