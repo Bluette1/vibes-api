@@ -47,11 +47,15 @@ module Api
       response = http.request(request)
       json_data = JSON.parse(response.body)
 
-      # Assuming the API returns an array of image data
-      json_data['results'].map do |image_data|
-        {
+      # Exclude images whose alt_description contains the words "computer" or "laptop" (case-insensitive)
+      forbidden = %w[computer laptop]
+      (json_data['results'] || []).each_with_object([]) do |image_data, out|
+        alt = image_data['alt_description'].to_s.downcase
+        next if forbidden.any? { |w| alt.include?(w) }
+
+        out << {
           title: image_data['description'] || 'Untitled',
-          src: image_data['urls']['small'], # You can choose other sizes like 'regular' or 'full'
+          src: image_data['urls']['small'],
           description: image_data['alt_description']
         }
       end
