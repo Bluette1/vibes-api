@@ -7,23 +7,15 @@ module Api
 
     def index
       cache_key = 'images_index'
-      cached_response = $redis.get(cache_key)
-
-      if cached_response
-        render json: JSON.parse(cached_response)
-      else
-        # Fetch images from Unsplash API
-        unsplash_images = fetch_images_from_unsplash
-        if unsplash_images.present?
-          images = unsplash_images
-        else
-          # Fallback to default images from the database
-          Rails.logger.debug 'Rendering Fallback'
-          images = Image.all
-        end
-        $redis.set(cache_key, images.to_json, ex: 1.hour.to_i)
-        render json: images
+      if (cached = $redis.get(cache_key))
+        render json: JSON.parse(cached)
+        return
       end
+
+      unsplash_images = fetch_images_from_unsplash || []
+      merged = merge_images(db_images_formatted, unsplash_images)
+
+      cache_and_render(cache_key, merged)
     end
 
     def create
@@ -62,6 +54,43 @@ module Api
     rescue StandardError => e
       Rails.logger.error "Unsplash API Error: #{e.message}"
       nil
+    end
+
+    def db_images_formatted
+      Image.all.map do |img|
+        {
+          id: img.id,
+          title: img.title || 'Untitled',
+          src: img.src,
+          description: img.description,
+          category: img.category
+        }
+      end
+    end
+
+    def merge_images(db_images, unsplash_images)
+      merged = []
+      seen_srcs = {}
+
+      db_images.each do |i|
+        merged << i
+        seen_srcs[i[:src]] = true if i[:src]
+      end
+
+      unsplash_images.each do |u|
+        next unless u[:src]
+        next if seen_srcs[u[:src]]
+
+        merged << u
+        seen_srcs[u[:src]] = true
+      end
+
+      merged
+    end
+
+    def cache_and_render(cache_key, payload)
+      $redis.set(cache_key, payload.to_json, ex: 1.hour.to_i)
+      render json: payload
     end
   end
 end
