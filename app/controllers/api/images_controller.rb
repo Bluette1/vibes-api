@@ -57,8 +57,15 @@ module Api
     end
 
     def db_images_formatted
-      Image.all.map do |img|
-        {
+      Image.all.each_with_object([]) do |img, out|
+        next unless img.src.present?
+
+        unless url_exists?(img.src)
+          Rails.logger.warn "Skipping image id=#{img.id} because src is unreachable: #{img.src}"
+          next
+        end
+
+        out << {
           id: img.id,
           title: img.title || 'Untitled',
           src: img.src,
@@ -66,6 +73,23 @@ module Api
           category: img.category
         }
       end
+    end
+
+    # Perform a quick HEAD request to check whether a URL exists/returns success.
+    # Returns true for 2xx responses, false otherwise. Uses a short open/read timeout.
+    def url_exists?(raw_url)
+      uri = URI.parse(raw_url)
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = (uri.scheme == 'https')
+      http.open_timeout = 2
+      http.read_timeout = 2
+
+      request = Net::HTTP::Head.new(uri.request_uri)
+      response = http.request(request)
+      response.is_a?(Net::HTTPSuccess)
+    rescue StandardError => e
+      Rails.logger.debug "URL check failed for #{raw_url}: #{e.message}"
+      false
     end
 
     def merge_images(db_images, unsplash_images)
