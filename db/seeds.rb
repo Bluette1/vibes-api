@@ -12,16 +12,16 @@ Image.create([
              ])
 
 Audio.create([
-               { title: 'Ocean Waves', url: 'https://vvibes-cloud.s3.us-east-1.amazonaws.com/audios/mindfulness.mp3', duration: 384, audio_type: 'nature' },
-               { title: 'Thine is the Glory', url: 'https://vvibes-cloud.s3.us-east-1.amazonaws.com/audios/Thine_Is_the_Glory.mp3', duration: 43, audio_type: 'hymn' },
-               { title: 'O Come O Come ', url: 'https://vvibes-cloud.s3.us-east-1.amazonaws.com/audios/O-come-O-come.mp3', duration: 66, audio_type: 'hymn' },
-               { title: 'Joyful Joyful', url: 'https://vvibes-cloud.s3.us-east-1.amazonaws.com/audios/joyful-joyful.mp3', duration: 177, audio_type: 'hymn' },
-               { title: 'Rainforest Ambience', url: 'https://vvibes-cloud.s3.us-east-1.amazonaws.com/audios/think.mp3', duration: 384, audio_type: 'nature' },
-               { title: 'Feel Good', url: 'https://vvibes-cloud.s3.us-east-1.amazonaws.com/audios/meditation.mp3', duration: 360, audio_type: 'ambient' },
-               { title: 'Deep Focus', url: 'https://vvibes-cloud.s3.us-east-1.amazonaws.com/audios/deep-focus.mp3', duration: 306, audio_type: 'ambient' },
-               { title: 'Focus', url: 'https://vvibes-cloud.s3.us-east-1.amazonaws.com/audios/focused.mp3', duration: 384, audio_type: 'ambient' },
-               { title: 'Symphony No. 40 - Allegro', url: 'https://vvibes-cloud.s3.us-east-1.amazonaws.com/audios/Symphony+No.+40+-+Allegro.mp3', duration: 360, audio_type: 'background music' },
-               { title: 'Overture to Figaro', url: 'https://vvibes-cloud.s3.us-east-1.amazonaws.com/audios/Overture-to-Figaro.mp3', duration: 240, audio_type: 'background music' }
+               { title: 'Ocean Waves', url: 'https://vibes-audios.s3.us-east-2.amazonaws.com/audios/mindfulness.mp3', duration: 384, audio_type: 'nature' },
+               { title: 'Thine is the Glory', url: 'https://vibes-audios.s3.us-east-2.amazonaws.com/audios/Thine_Is_the_Glory.mp3', duration: 43, audio_type: 'hymn' },
+               { title: 'O Come O Come ', url: 'https://vibes-audios.s3.us-east-2.amazonaws.com/audios/O-come-O-come.mp3', duration: 66, audio_type: 'hymn' },
+               { title: 'Joyful Joyful', url: 'https://vibes-audios.s3.us-east-2.amazonaws.com/audios/joyful-joyful.mp3', duration: 177, audio_type: 'hymn' },
+               { title: 'Rainforest Ambience', url: 'https://vibes-audios.s3.us-east-2.amazonaws.com/audios/think.mp3', duration: 384, audio_type: 'nature' },
+               { title: 'Feel Good', url: 'https://vibes-audios.s3.us-east-2.amazonaws.com/audios/meditation.mp3', duration: 360, audio_type: 'ambient' },
+               { title: 'Deep Focus', url: 'https://vibes-audios.s3.us-east-2.amazonaws.com/audios/deep-focus.mp3', duration: 306, audio_type: 'ambient' },
+               { title: 'Focus', url: 'https://vibes-audios.s3.us-east-2.amazonaws.com/audios/focused.mp3', duration: 384, audio_type: 'ambient' },
+               { title: 'Symphony No. 40 - Allegro', url: 'https://vibes-audios.s3.us-east-2.amazonaws.com/audios/Symphony%2BNo.%2B40%2B-%2BAllegro.mp3', duration: 360, audio_type: 'background music' },
+               { title: 'Overture to Figaro', url: 'https://vibes-audios.s3.us-east-2.amazonaws.com/audios/Overture-to-Figaro.mp3', duration: 240, audio_type: 'background music' }
              ])
 
 # rubocop:enable Layout/LineLength

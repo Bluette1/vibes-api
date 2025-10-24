@@ -21,6 +21,12 @@ test:
 production:
   <<: *default
   url: <%= ENV['DATABASE_URL'] %>
+  # Supabase requires SSL. Prefer adding `?sslmode=require` to DATABASE_URL.
+  # Alternatively, uncomment the next line and set DB_SSLMODE=require in the environment.
+  # sslmode: <%= ENV['DB_SSLMODE'] %>
+  # If you use Supabase Pooler (PgBouncer, typically port 6543), it's recommended
+  # to disable prepared statements to avoid transaction-pooling issues.
+  prepared_statements: <%= ENV.fetch('PG_PREPARED_STATEMENTS', 'true') == 'true' %>
   # database: your_app_name_production
   # username: <%= ENV["POSTGRES_USER"] %>
   # password: <%= ENV["POSTGRES_PASSWORD"] %>
