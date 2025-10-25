@@ -73,7 +73,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address: 'smtp.yourprovider.com', # Use your SMTP server
     port: 587, # or 465 for SSL
-    domain: 'vibes-api-space-f970ef69ea72.herokuapp.com',
+    domain: 'vibes-api-gn8v.onrender.com',
     user_name: ENV['EMAIL_USERNAME'],
     password: ENV['EMAIL_PASSWORD'],
     authentication: 'plain',
@@ -81,7 +81,7 @@ Rails.application.configure do
   }
 
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.default_url_options = { host: 'vibes-api-space-f970ef69ea72.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: 'vibes-api-space-f970ef69ea72.m' }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).

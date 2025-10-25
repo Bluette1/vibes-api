@@ -2,7 +2,7 @@
 
 Vibes API is a Ruby on Rails application designed to provide robust and secure data management for the Vibes app, featuring user management, secure data storage, and automated testing.
 
-[Deployed site](https://vibes-api-space-f970ef69ea72.herokuapp.com)
+[Deployed site](https://vibes-api-gn8v.onrender.com)
 
 ## Overview
 
