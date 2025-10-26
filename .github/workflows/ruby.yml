@@ -14,6 +14,7 @@ on:
 env:
   POSTGRES_USER: postgres
   POSTGRES_PASSWORD: postgres
+  POSTGRES_DB: postgres
 
 jobs:
   build:
@@ -21,10 +22,13 @@ jobs:
 
     services:
       postgres:
-        image: postgres:latest
+        # Use Supabase's Postgres image which includes pg_graphql and other extensions.
+        # Replace the tag with the specific version you prefer from Docker Hub.
+        image: supabase/postgres:17.6.1.002
         env:
           POSTGRES_USER: ${{ env.POSTGRES_USER }}
           POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
+          POSTGRES_DB: ${{ env.POSTGRES_DB }}
         ports:
           - 5432:5432
         options: >-
@@ -41,6 +45,7 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: "3.1"
+
       - name: Install dependencies
         run: bundle install
 

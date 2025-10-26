@@ -21,7 +21,11 @@ ActiveRecord::Schema[7.1].define(version: 20_250_308_192_322) do
   create_schema 'vault'
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension 'pg_graphql'
+  begin
+    enable_extension 'pg_graphql'
+  rescue ActiveRecord::StatementInvalid => e
+    warn "Skipping enable_extension 'pg_graphql': #{e.class}: #{e.message}"
+  end
   enable_extension 'pg_stat_statements'
   enable_extension 'pgcrypto'
   enable_extension 'plpgsql'
