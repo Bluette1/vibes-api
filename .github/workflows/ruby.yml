@@ -6,11 +6,15 @@ on:
       - main
       - develop
       - feature/background-music-for-meditation-3
+      - 'hotfix/**'
   pull_request:
     branches:
       - main
       - develop
       - feature/background-music-for-meditation-3
+      - 'hotfix/**'
+  workflow_dispatch:
+
 env:
   # Use the Supabase expected admin user for the supabase/postgres image
   POSTGRES_USER: supabase_admin
@@ -24,6 +28,7 @@ jobs:
     services:
       postgres:
         # Use Supabase's Postgres image which includes pg_graphql and other extensions.
+        # Replace the tag with the specific version you prefer from Docker Hub.
         image: supabase/postgres:17.6.1.002
         env:
           POSTGRES_USER: ${{ env.POSTGRES_USER }}
@@ -47,7 +52,10 @@ jobs:
           ruby-version: "3.1"
 
       - name: Install dependencies
-        run: bundle install
+        run: bundle install --jobs 4 --retry 3
+
+      - name: Export DATABASE_URL
+        run: echo "DATABASE_URL=postgresql://${{ env.POSTGRES_USER }}:${{ env.POSTGRES_PASSWORD }}@127.0.0.1:5432/${{ env.POSTGRES_DB }}" >> $GITHUB_ENV
 
       - name: Create the database
         run: bin/rails db:create
