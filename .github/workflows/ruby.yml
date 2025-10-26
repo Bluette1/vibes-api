@@ -12,7 +12,8 @@ on:
       - develop
       - feature/background-music-for-meditation-3
 env:
-  POSTGRES_USER: postgres
+  # Use the Supabase expected admin user for the supabase/postgres image
+  POSTGRES_USER: supabase_admin
   POSTGRES_PASSWORD: postgres
   POSTGRES_DB: postgres
 
@@ -23,7 +24,6 @@ jobs:
     services:
       postgres:
         # Use Supabase's Postgres image which includes pg_graphql and other extensions.
-        # Replace the tag with the specific version you prefer from Docker Hub.
         image: supabase/postgres:17.6.1.002
         env:
           POSTGRES_USER: ${{ env.POSTGRES_USER }}
@@ -32,10 +32,10 @@ jobs:
         ports:
           - 5432:5432
         options: >-
-          --health-cmd "pg_isready -U postgres"
+          --health-cmd "pg_isready -U ${{ env.POSTGRES_USER }}"
           --health-interval 10s
           --health-timeout 5s
-          --health-retries 5
+          --health-retries 10
 
     steps:
       - name: Checkout code
